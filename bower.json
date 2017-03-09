@@ -1,0 +1,25 @@
+{
+  "name": "colorpicker-cc",
+  "description": "color picker",
+  "main": "index.js",
+  "authors": [
+    "tmirun"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "colorpicker",
+    "color-picker"
+  ],
+  "homepage": "https://github.com/tmirun/colorpicker-cc",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "src"
+  ],
+  "dependencies": {
+    "Snap.svg": "snap.svg#^0.5.1"
+  }
+}
