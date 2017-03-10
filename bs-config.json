@@ -2,7 +2,7 @@
   "port": 8000,
   "files": ["./src/**/*.{html,htm,css,js}",
     "bower_components/**/*.{html,htm,css,js}",
-    "index.html"
+    "demo/*.{html,htm,css,js}"
   ],
-  "server": { "baseDir": "./" }
+  "server": { "baseDir": "./", "index": "./dist/index.html"}
 }
