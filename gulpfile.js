@@ -29,8 +29,8 @@ gulp.task('build', function() {
           presets: ['es2015']
       }))
       .on("error", $.util.log)
-      .pipe($.uglify())
-      .pipe($.concat("bundle.min.js"))
+      //.pipe($.uglify())
+      //.pipe($.concat("bundle.min.js"))
     .pipe($.sourcemaps.write())
     .pipe(gulp.dest(paths.dist));
 });
@@ -38,9 +38,7 @@ gulp.task('build', function() {
 //inject
 gulp.task('inject', function() {
     return gulp.src(paths.index)
-        .pipe($.inject(gulp.src(["dist/*.js"], {read: false}),{
-          transform: filepath => `<script src="${filepath}"></script>`
-        }))
+        .pipe($.inject(gulp.src(["dist/*.js"], {read: false})))
         .pipe(gulp.dest(paths.dist));
 });
 
