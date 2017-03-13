@@ -1,7 +1,6 @@
 
 export default class ColorPicker{
   constructor(parentElement){
-    console.log("11122221111");
     // initialize parent Element
     this.parentElement = null;
     if(typeof parentElement === "string" && parentElement.charAt(0)=="#"){
