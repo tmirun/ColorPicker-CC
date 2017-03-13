@@ -18,7 +18,12 @@ export default class Selector{
     console.log(value);
   }
 
+  get value(){
+    return this._value;
+  }
+
   set value(value){
+    this._value = value;
     this.onchange(value);
   }
 }

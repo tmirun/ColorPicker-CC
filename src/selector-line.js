@@ -6,7 +6,9 @@ var defaultParams ={
   width: 200,
   height: 20,
   selectorRadius: 15,
-  value: 0
+  value: 0,
+  maxValue:100,
+  minValue:0
 };
 
 export default class SelectorLine extends Selector{
@@ -18,14 +20,15 @@ export default class SelectorLine extends Selector{
 
     this.paper = paper;
 
-    this.params = Object.assign({},defaultParams);
-    Object.assign(this.params, params);
+    Object.assign(defaultParams, params);
 
-    this.direction = this.params.direction;
+    Object.assign(this,defaultParams);
 
-    this.bar = this.paper.rect(this.params.x, this.params.y, this.params.width, this.params.height);
+    console.log(this);
 
-    this.selector = this.paper.circle(this.params.x + this.params.value, this.params.y + this.params.height/2, this.params.selectorRadius);
+    this.bar = this.paper.rect(this.x, this.y, this.width, this.height);
+
+    this.selector = this.paper.circle(this.x + this.value, this.y + this.height/2, this.selectorRadius);
     this.selector.attr({fill:"red"});
 
     this.initSelectorEvents();
@@ -51,7 +54,7 @@ export default class SelectorLine extends Selector{
 
       that._range = that.normalizeRange(that._x);
       if(that._range !== that._value){
-        that.value = that._value = that._range;
+        that.value = that._range;
       }
 
       that.selector.attr("cx", that._x);
