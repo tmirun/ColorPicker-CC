@@ -41,9 +41,14 @@ gulp.task('build', function() {
 //inject
 gulp.task('inject', function() {
     return gulp.src(paths.index)
-        .pipe($.inject(gulp.src(["dist/*.js"], {read: false})))
+        .pipe($.inject(gulp.src(["dist/*.js","dist/*.css"], {read: false})))
         .pipe(gulp.dest(paths.dist));
 });
+
+gulp.task('clonecss', function(){
+    return gulp.src(["demo/*.css"])
+        .pipe(gulp.dest(paths.dist));
+})
 
 //watch
 gulp.task('watch', function() {
@@ -55,4 +60,4 @@ gulp.task('serve', function(){
     browserSync.init(bsConfig);
 });
 
-gulp.task("default", runSequence("clear", "build", "inject", "serve", "watch"));
+gulp.task("default", runSequence("clear", "clonecss", "build", "inject", "serve", "watch"));
