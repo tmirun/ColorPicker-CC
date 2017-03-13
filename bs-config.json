@@ -1,9 +1,8 @@
 {
   "open": false,
   "port": 8000,
-  "files": ["./src/**/*.{html,htm,css,js}",
-    "bower_components/**/*.{html,htm,css,js}",
-    "demo/*.{html,htm,css,js}"
+  "files": ["./dist/**/*.{html,htm,css,js}",
+    "bower_components/**/*.{html,htm,css,js}"
   ],
   "server": { "baseDir": "./", "index": "./dist/index.html"}
 }
