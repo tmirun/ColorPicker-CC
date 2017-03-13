@@ -40,5 +40,8 @@
     "run-sequence": "^1.2.2",
     "webpack": "^2.2.1",
     "webpack-stream": "^3.2.0"
+  },
+  "dependencies": {
+    "acolorjs": "^2.1.0"
   }
 }
