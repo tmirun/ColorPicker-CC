@@ -26,7 +26,10 @@ export default class SelectorLine extends Selector{
 
     this.bar = this.paper.rect(this.x, this.y, this.width, this.height);
 
-    this.selector = this.paper.circle(this.x + this.value, this.y + this.height/2, this.selectorRadius);
+    this.selector = this.paper.circle(this.x + this.value / this.maxValue * this.width,
+                                        this.y + this.height/2,
+                                        this.selectorRadius);
+
     this.selector.attr({fill:"red"});
 
     this.initSelectorEvents();
