@@ -29,6 +29,7 @@ gulp.task("concat", function () {
 gulp.task('build', function() {
   console.log("build");
   return gulp.src("./src/app.js")
+    .pipe($.plumber())
     .pipe(webpackStream({
       output: {
         filename: '[name].js',
