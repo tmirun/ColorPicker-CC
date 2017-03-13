@@ -89,6 +89,6 @@ export default class SelectorLine extends Selector{
       case "vertical":
         break;
     }
-    return range = parseInt(range*100)/100;
+    return range = parseInt(range*this.maxValue);
   }
 }
