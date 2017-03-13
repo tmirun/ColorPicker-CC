@@ -24,8 +24,6 @@ export default class SelectorLine extends Selector{
 
     Object.assign(this,defaultParams);
 
-    console.log(this);
-
     this.bar = this.paper.rect(this.x, this.y, this.width, this.height);
 
     this.selector = this.paper.circle(this.x + this.value, this.y + this.height/2, this.selectorRadius);
