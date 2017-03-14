@@ -1,11 +1,15 @@
 export default class Selector{
-  constructor(paper){
+  constructor(paper, params, defaultParams = {}){
     if(!paper){
       throw new Error('Selector error: shoult pass snap paper object');
     }
     this.paper = paper;
+    this.group = this.paper.g();
     this.value;
-    this._value;
+    this._value = 0;
+
+    Object.assign(defaultParams, params);
+    Object.assign(this, defaultParams);
   }
   getElementAbsolutePosition(element){
     var rect = element.getBoundingClientRect();
