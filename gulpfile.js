@@ -10,7 +10,7 @@ var bsConfig = require('./bs-config.json');
 
 const paths = {
   scripts: ["src/*.js"],
-  demo: ["demo/*.js","demo/*.html"],
+  demo: ["demo/*.js", "demo/*.html", "demo/*.css"],
   index:["./demo/index.html"],
   dist: "./dist",
   tmp: "./.tmp"
@@ -52,7 +52,7 @@ gulp.task('clonecss', function(){
 
 //watch
 gulp.task('watch', function() {
-  gulp.watch(paths.scripts.concat(paths.demo), ["build"])
+  gulp.watch(paths.scripts.concat(paths.demo), ["build", "clonecss", "inject"])
 });
 
 //serve
@@ -60,4 +60,4 @@ gulp.task('serve', function(){
     browserSync.init(bsConfig);
 });
 
-gulp.task("default", runSequence("clear", "clonecss", "build", "inject", "serve", "watch"));
+gulp.task("default", runSequence("clear", "build", "clonecss", "inject", "serve", "watch"));
