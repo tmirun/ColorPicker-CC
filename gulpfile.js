@@ -6,6 +6,8 @@ const runSequence = require('run-sequence').use(gulp);
 var webpackStream = require('webpack-stream');
 var webpack2 = require('webpack');
 
+var exec = require('child_process').exec;
+
 var bsConfig = require('./bs-config.json');
 
 const paths = {
@@ -27,7 +29,6 @@ gulp.task("concat", function () {
 })
 
 gulp.task('build', function() {
-  console.log("build");
   return gulp.src("./src/app.js")
     .pipe($.plumber())
     .pipe(webpackStream({
@@ -60,4 +61,9 @@ gulp.task('serve', function(){
     browserSync.init(bsConfig);
 });
 
-gulp.task("default", runSequence("clear", "build", "clonecss", "inject", "serve", "watch"));
+//doc
+gulp.task('doc', function(){
+  exec('esdoc && open ./doc/index.html');
+})
+
+gulp.task("start", runSequence("clear", "build", "clonecss", "inject", "serve", "watch"));

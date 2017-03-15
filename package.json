@@ -4,7 +4,7 @@
   "description": "color picker",
   "main": "index.js",
   "scripts": {
-    "start": "gulp",
+    "start": "gulp start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -26,6 +26,7 @@
     "bower": "^1.8.0",
     "browser-sync": "^2.18.8",
     "del": "^2.2.2",
+    "esdoc": "^0.5.2",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
     "gulp-concat": "^2.6.1",
