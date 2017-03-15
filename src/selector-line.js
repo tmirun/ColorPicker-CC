@@ -13,16 +13,12 @@ var defaultParams ={
 
 export default class SelectorLine extends Selector{
   constructor(paper, params){
-    super(paper);
+    super(paper, params, defaultParams);
 
     this._x;
     this._y;
-
-    this.paper = paper;
-
-    Object.assign(defaultParams, params);
-
-    Object.assign(this,defaultParams);
+    this.bar;
+    this.selector;
 
     this.bar = this.paper.rect(this.x, this.y, this.width, this.height);
 
