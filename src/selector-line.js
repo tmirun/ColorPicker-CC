@@ -1,9 +1,9 @@
 import Selector from "./selector";
-var defaultParams ={
+const defaultParams ={
   direction: "holizontal",
   x: 20,
   y: 20,
-  width: 200,
+  width: 100,
   height: 20,
   markerRadius: 15,
   value: 0,
@@ -12,18 +12,30 @@ var defaultParams ={
 };
 
 export default class SelectorLine extends Selector{
-  constructor(paper, params){
-    super(paper, params, defaultParams);
 
+  constructor(paper, params){
+    super(paper);
+
+    // segemnts properties
+    this.direction = "holizontal";
+    this.x = 20;
+    this.y = 20;
+    this.width = 20;
+    this.height = 20;
+    this.value = 0;
+    this.maxValue = 100;
+    this.minValue = 0;
+
+    // marker properties
     this.marker;
-    this.width;
-    this.height;
-    this.markerRadius;
-    this.value;
-    this.maxValue;
-    this.minValue;
+    this.markerRadius = 15;
+
+    // private properties
     this._x;
     this._y;
+
+    // replace properties from params
+    this._parseParams(params);
 
     this.draw();
     this.initSelectorEvents();

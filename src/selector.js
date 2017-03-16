@@ -34,10 +34,6 @@ export default class Selector{
 
     /** @type {number} */
     this._value = 0;
-
-    //parsing params
-    Object.assign(defaultParams, params);
-    Object.assign(this, defaultParams);
   }
 
   /** @type {number} */
@@ -47,6 +43,14 @@ export default class Selector{
   set value(value){
     this._value = value;
     this.onchange(value);
+  }
+
+  /**
+   * asign param to selector object
+   * @private
+   */
+  _parseParams( params ){
+    Object.assign(this, params);
   }
 
   /**

@@ -1,21 +1,30 @@
 import Selector from "./selector";
 import {customArc, angleBetween2Points} from "./utils";
 
-var defaultParams ={
-  cx: 100,
-  cy: 100,
-  radius: 40,
-  width: 20,
-  markerRadius: 15,
-  segmentsNum: 12,
-  initRotation: 15,
-  value: 0
-};
-
 export default class SelectorDonut extends Selector{
 
   constructor(paper, params){
-    super(paper, params, defaultParams);
+    super(paper);
+
+    //segments properties
+    this.cx = 100;
+    this.cy = 100;
+    this.radius = 40;
+    this.width = 20;
+    this.segmentsNum = 12;
+    this.initRotation = 15;
+    this.value = 0;
+
+    //marker properties
+    this.marker;
+    this.markerRadius = 15;
+
+    //private properties
+    this._angle;
+
+    // replace properties from params
+    this._parseParams(params);
+
     this.draw();
     this.initSelectorEvents();
   }
