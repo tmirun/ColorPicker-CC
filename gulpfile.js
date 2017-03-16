@@ -53,7 +53,7 @@ gulp.task('clonecss', function(){
 
 //watch
 gulp.task('watch', function() {
-  gulp.watch(paths.scripts.concat(paths.demo), ["build", "clonecss", "inject"])
+  gulp.watch(paths.scripts.concat(paths.demo), ["doc", "build", "clonecss", "inject"])
 });
 
 //serve
@@ -63,7 +63,12 @@ gulp.task('serve', function(){
 
 //doc
 gulp.task('doc', function(){
-  exec('esdoc && open ./doc/index.html');
-})
+  exec('esdoc');
+});
 
-gulp.task("start", runSequence("clear", "build", "clonecss", "inject", "serve", "watch"));
+//doc open in browser
+gulp.task('doc:open', function(){
+  exec('esdoc && open ./doc/index.html');
+});
+
+gulp.task("start", runSequence("doc","clear", "build", "clonecss", "inject", "serve", "watch"));
