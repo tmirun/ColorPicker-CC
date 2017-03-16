@@ -20,14 +20,17 @@ export default class Selector{
     /** @type {Snap.paper.g} */
     this.group = this.paper.g();
 
-    /** @type {Snap.element} */
-    this.marker;
-
     /**
      * store created elements
-     * @type {string}
+     * @type {Snap.paper.g}
      */
-    this.segments = [];
+    this.segments = this.paper.g();
+
+    /** @type {number} */
+    this.segmentsNum = 1;
+
+    /** @type {Snap.element} */
+    this.marker;
 
     /** @type {number} */
     this._value = 0;
