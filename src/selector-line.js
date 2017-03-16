@@ -5,7 +5,7 @@ var defaultParams ={
   y: 20,
   width: 200,
   height: 20,
-  selectorRadius: 15,
+  markerRadius: 15,
   value: 0,
   maxValue:100,
   minValue:0
@@ -15,57 +15,68 @@ export default class SelectorLine extends Selector{
   constructor(paper, params){
     super(paper, params, defaultParams);
 
+    this.marker;
+    this.width;
+    this.height;
+    this.markerRadius;
+    this.value;
+    this.maxValue;
+    this.minValue;
     this._x;
     this._y;
-    this.bar;
-    this.selector;
 
-    this.bar = this.paper.rect(this.x, this.y, this.width, this.height);
-
-    this.selector = this.paper.circle(this.x + this.value / this.maxValue * this.width,
-                                        this.y + this.height/2,
-                                        this.selectorRadius);
-
-    this.selector.attr({fill:"red"});
-
+    this.draw();
     this.initSelectorEvents();
+  }
+
+  draw(){
+
+    var bar = this.paper.rect(this.x, this.y, this.width, this.height);
+
+    this.segments.add(bar);
+
+    this.marker = this.paper.circle(this.x + this.value / this.maxValue * this.width,
+                                        this.y + this.height/2,
+                                        this.markerRadius);
+
+    this.group.add(this.segments, this.marker);
+
   }
 
   initSelectorEvents(){
     let that = this;
 
-    this.selector.drag((dx, dy, x, y, event) => dragHandle(event),
+    this.group.drag((dx, dy, x, y, event) => dragHandle(event),
                         (x, y, event) => dragHandle(event),
                         this.ondragend);
-
-    this.bar.drag((dx, dy, x, y, event) => dragHandle(event),
-                  (x, y, event) => dragHandle(event),
-                  this.ondragend);
 
     function dragHandle (event){
       if (that._x == event.clientX && that._y == event.clientY) return;
       let paperRect = that.paper.node.getBoundingClientRect();
       let relativeSvgPosX = event.clientX-paperRect.left;
-      that._x = that.limiteTranslation(relativeSvgPosX);
+      that._x = that._limiteTranslation(relativeSvgPosX);
       that._y = event.clientY;
 
-      that._range = that.normalizeRange(that._x);
+      that._range = that._normalizeRange(that._x);
       if(that._range !== that._value){
         that.value = that._range;
       }
 
-      that.selector.attr("cx", that._x);
+      that.marker.attr("cx", that._x);
     }
   }
 
-  limiteTranslation(value){
+  /**
+   * @private
+   */
+  _limiteTranslation(value){
     let max, min;
-    let barRect = this.bar.node.getBoundingClientRect();
+    let elementRect = this.segments.node.getBoundingClientRect();
     let paperRect = this.paper.node.getBoundingClientRect();
     switch (this.direction) {
       case "holizontal":
-        min = barRect.left - paperRect.left - 1;
-        max = barRect.left + barRect.width - paperRect.left -1;
+        min = elementRect.left - paperRect.left - 1;
+        max = elementRect.left + elementRect.width - paperRect.left -1;
         break;
       case "vertical":
 
@@ -76,14 +87,17 @@ export default class SelectorLine extends Selector{
     return value;
   }
 
-  normalizeRange(positionValue){
-    let barRect = this.bar.node.getBoundingClientRect();
+  /**
+   * @private
+   */
+  _normalizeRange(positionValue){
+    let elementRect = this.segments.node.getBoundingClientRect();
     let paperRect = this.paper.node.getBoundingClientRect();
     let range, offsetX, offsetY;
     switch (this.direction) {
       case "holizontal":
-        offsetX = barRect.left - paperRect.left - 1;
-        range = (positionValue - offsetX) /barRect.width;
+        offsetX = elementRect.left - paperRect.left - 1;
+        range = (positionValue - offsetX) /elementRect.width;
         break;
       case "vertical":
         break;
