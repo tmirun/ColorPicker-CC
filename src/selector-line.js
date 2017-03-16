@@ -30,9 +30,9 @@ export default class SelectorLine extends Selector{
   }
 
   draw(){
-
     var bar = this.paper.rect(this.x, this.y, this.width, this.height);
     this.segments.add(bar);
+
     switch (this.direction) {
       case "holizontal":
         this.marker = this.paper.circle(this.x + this.value / this.maxValue * this.width,
@@ -47,7 +47,6 @@ export default class SelectorLine extends Selector{
     }
 
     this.group.add(this.segments, this.marker);
-
   }
 
   initSelectorEvents(){
