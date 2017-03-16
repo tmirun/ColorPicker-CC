@@ -51,3 +51,23 @@ export function customArc (x, y, deg, radius, width) {
 
     return pathString;
 }
+
+export function angleBetween2Points (centerX,centerY,eventX,eventY, separation){
+     //separation is for digital options
+
+     var rad = Math.atan2(eventX - centerX, - (eventY- centerY));
+     var angle = rad * (180/Math.PI);
+
+     if(angle < 0){
+         angle = 360 + angle;
+     }
+
+     if(separation){ //digital angle
+         var num = parseInt(angle / separation);
+         var roundUp = (angle % separation > separation / 2) ? 1:0;
+         num = num + roundUp;
+         angle = num * separation;
+     }
+
+     return angle;
+ }
