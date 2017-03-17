@@ -6,9 +6,8 @@ export default class Selector{
   /**
    * @param {Snap.paper} paper - Snap paper object.
    * @param {object} params - will replace class properties.
-   * @param {object} [defaultParams] -  default params
    */
-  constructor(paper, params, defaultParams = {}){
+  constructor(paper, params){
 
     if(!paper){
       throw new Error('Selector error: shoult pass snap paper object');
