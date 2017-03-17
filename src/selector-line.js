@@ -64,11 +64,21 @@ export default class SelectorLine extends Selector{
   initSelectorEvents(){
     let that = this;
 
-    this.group.drag((dx, dy, x, y, event) => dragHandle(event),
-                        (x, y, event) => dragHandle(event),
-                        this.ondragend);
 
-    function dragHandle (event){
+    switch (this.direction) {
+      case "holizontal":
+        this.group.drag((dx, dy, x, y, event) => dragHandleHolizontal(event),
+                        (x, y, event) => dragHandleHolizontal(event),
+                        this.ondragend);
+        break;
+      case "vertical":
+        this.group.drag((dx, dy, x, y, event) => dragHandleVertical(event),
+                        (x, y, event) => dragHandleVertical(event),
+                        this.ondragend);
+        break;
+    }
+
+    function dragHandleHolizontal (event){
       if (that._x == event.clientX && that._y == event.clientY) return;
       let paperRect = that.paper.node.getBoundingClientRect();
       let relativeSvgPosX = event.clientX-paperRect.left;
@@ -81,6 +91,21 @@ export default class SelectorLine extends Selector{
       }
 
       that.marker.attr("cx", that._x);
+    }
+
+
+    function dragHandleVertical (event){
+      if (that._y == event.clientY) return;
+      let paperRect = that.paper.node.getBoundingClientRect();
+      let relativeSvgPosY = event.clientY - paperRect.top;
+      that._y = that._limiteTranslation(relativeSvgPosY);
+
+      that._range = that._normalizeRange(that._y);
+      if(that._range !== that._value){
+        that.value = that._range;
+      }
+
+      that.marker.attr("cy", that._y);
     }
   }
 
@@ -97,7 +122,8 @@ export default class SelectorLine extends Selector{
         max = elementRect.left + elementRect.width - paperRect.left -1;
         break;
       case "vertical":
-
+        min = elementRect.top - paperRect.top - 1;
+        max = elementRect.top + elementRect.height - paperRect.top -1;
         break;
     }
     if(value > max) return max;
@@ -118,6 +144,8 @@ export default class SelectorLine extends Selector{
         range = (positionValue - offsetX) /elementRect.width;
         break;
       case "vertical":
+        offsetY = elementRect.top - paperRect.top - 1;
+        range = (positionValue - offsetY) /elementRect.height;
         break;
     }
     return range = parseInt(range*this.maxValue);
