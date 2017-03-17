@@ -1,6 +1,9 @@
+import * as aColor from "acolorjs";
+
+let defaultColor = "#ff0000";
 
 export default class ColorPicker{
-  constructor(parentElement){
+  constructor(parentElement, color = defaultColor){
     // initialize parent Element
     this.parentElement = null;
     if(typeof parentElement === "string" && parentElement.charAt(0)=="#"){
@@ -12,10 +15,12 @@ export default class ColorPicker{
       throw new Error('SVG error: shoult pass id with # or DOM object');
     }
 
+    this.acolor = new aColor(color);
+
     this.svg = null;
     this.group = null;
-    this.svgWidth = 800;
-    this.svgHeight = 500;
+    this.svgWidth = 300;
+    this.svgHeight = 250;
 
     this.generateSvg();
     this.paper = Snap(this.svg);
