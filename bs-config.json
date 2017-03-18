@@ -2,7 +2,8 @@
   "open": false,
   "port": 8000,
   "files": ["./dist/**/*.{html,htm,css,js}",
-    "bower_components/**/*.{html,htm,css,js}"
+    "bower_components/**/*.{html,htm,css,js}",
+    "assets/*"
   ],
   "server": { "baseDir": "./", "index": "./dist/index.html"}
 }
