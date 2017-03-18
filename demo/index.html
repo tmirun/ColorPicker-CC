@@ -1,10 +1,36 @@
 <hmlt>
   <script src="../bower_components/Snap.svg/dist/snap.svg-min.js"></script>
-  <!-- <script src="./demo/main.js"></script> -->
+  <script src="../bower_components/jquery/dist/jquery.js"></script>
+  <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.css">
+  <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
   <!-- inject:css -->
   <!-- endinject -->
   <body>
-    <div id="paper-rgb"></div>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">
+            <!-- <img alt="Brand" src="..."> -->
+          </a>
+        </div>
+      </div>
+    </nav>
+    <section class="jumbotron">
+      <div class="container">
+        <div id="jumbotron-svg-wrapper" class="row">
+          <svg id="jumbotron-svg" class="col-md-6" height="400" width="400">
+          </svg>
+          <!-- <img src="/assets/eyedropper.svg" width="100px" height="100px"/> -->
+          <h1 class="col-md-6"> Color Cloud</h1>
+        </div>
+      </div>
+    </section>
+    <section class="container">
+      <div class="row">
+        <div id="paper-rgb" class="col-md-4"></div>
+        <div id="paper-hsl" class="col-md-4"></div>
+      </div>
+    </section>
   </body>
 
   <!-- inject:js -->

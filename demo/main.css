@@ -1,0 +1,22 @@
+.navbar{
+  margin-bottom: 0;
+  background: #FFC107;
+}
+
+.jumbotron{
+  background: #FFF9C4;
+  /*background: white;*/
+  /*border-bottom: grey thin solid;*/
+}
+
+#jumbotron-svg-wrapper{
+  min-height: 400px;
+  position: relative;
+}
+
+.eyedropper{
+  height: 100px;
+  width: 100px;
+  background-size: cover;
+  background: url();
+}
