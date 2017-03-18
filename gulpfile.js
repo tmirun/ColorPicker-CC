@@ -13,7 +13,7 @@ var bsConfig = require('./bs-config.json');
 const paths = {
   scripts: ["src/*.js"],
   demo: ["demo/*.js", "demo/*.html", "demo/*.css"],
-  index:["./demo/index.html"],
+  index:["./demo/*.js", "./demo/*.html", "./demo/*.css"],
   dist: "./dist",
   tmp: "./.tmp"
 }
@@ -29,11 +29,11 @@ gulp.task("concat", function () {
 })
 
 gulp.task('build', function() {
-  return gulp.src("./src/app.js")
+  return gulp.src(["./src/app.js", "./src/main.js"])
     .pipe($.plumber())
     .pipe(webpackStream({
       output: {
-        filename: '[name].js',
+        filename: 'bundle.js',
       }
     }, webpack2))
     .pipe(gulp.dest(paths.dist));
@@ -46,14 +46,14 @@ gulp.task('inject', function() {
         .pipe(gulp.dest(paths.dist));
 });
 
-gulp.task('clonecss', function(){
-    return gulp.src(["demo/*.css"])
+gulp.task('clonefiles', function(){
+    return gulp.src(["demo/*.css","demo/*.js"])
         .pipe(gulp.dest(paths.dist));
 })
 
 //watch
 gulp.task('watch', function() {
-  gulp.watch(paths.scripts.concat(paths.demo), ["doc", "build", "clonecss", "inject"])
+  gulp.watch(paths.scripts.concat(paths.demo), ["doc", "build", "clonefiles", "inject"])
 });
 
 //serve
@@ -71,4 +71,4 @@ gulp.task('doc:open', function(){
   exec('esdoc && open ./doc/index.html');
 });
 
-gulp.task("start", runSequence("doc","clear", "build", "clonecss", "inject", "serve", "watch"));
+gulp.task("start", runSequence("doc","clear", "build", "clonefiles", "inject", "serve", "watch"));
