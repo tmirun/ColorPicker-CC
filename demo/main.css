@@ -12,6 +12,7 @@
 #jumbotron-svg-wrapper{
   min-height: 400px;
   position: relative;
+  text-align: center;
 }
 
 .eyedropper{
@@ -19,4 +20,8 @@
   width: 100px;
   background-size: cover;
   background: url();
+}
+
+.color-picker-item{
+  text-align: center;
 }
