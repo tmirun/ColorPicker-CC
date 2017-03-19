@@ -12,7 +12,7 @@ export default class SelectorDonut extends Selector{
     this.radius = 40;
     this.width = 20;
     this.segmentsNum = 12;
-    this.initRotation = 15;
+    this.initRotation = 360 / this.segmentsNum / 2;
     this.value = 0;
 
     //marker properties
