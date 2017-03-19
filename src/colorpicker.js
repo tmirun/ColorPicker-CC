@@ -19,8 +19,8 @@ export default class ColorPicker{
 
     this.svg = null;
     this.group = null;
-    this.svgWidth = 300;
-    this.svgHeight = 250;
+    this.svgWidth = 250;
+    this.svgHeight = 200;
 
     this.generateSvg();
     this.paper = Snap(this.svg);
